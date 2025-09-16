@@ -14,44 +14,15 @@
 <body>
   <div class="row full-width-row header">
     <header class="coffee-span-12">
-      <a href="#row" class="skip">Skip to main content</a>
       <div class="container header-container">
         <div class="row">
           <div class="coffee-span-12">
-            <div class="row">
-              <div class="coffee-span-12">
-                <nav class="coffee-span-12">
-                  <div class="row">
-                    <div class="coffee-span-12">
-                      <div class="container navigation-container">
-                        <div class="row">
-                          <div class="coffee-span-12">
-                            <nav>
-                              <div class="row">
-                                <ul class="coffee-span-12">
-                                  <li class="coffee-span-12">
-                                    <a class="nav-link" href="index.html">Practice Questions</a>
-                                  </li>
-                                  <li class="coffee-span-12">
-                                    <a class="nav-link" href="star.html">The STAR Method</a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </nav>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </nav>
-              </div>
-            </div>
-            <div class="row">
-              <div class="coffee-span-12">
-                <h1 class="page-heading">Behavioral Question Practice</h1>
-                <p class="paragraph tagline">Practice makes perfect!</p>
-              </div>
-            </div>
+            <nav>
+              <ul class="nav-tabs">
+                <li><a href="index.html">Behavioral Questions Practice</a></li>
+                <li><a href="star.html">The STAR Method</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
@@ -62,12 +33,14 @@
       <div class="container main-container">
         <div class="row">
           <div class="coffee-span-12">
-            <h2 class="heading-1">Random Questions</h2>
+            <h1 class="page-heading">Behavioral Questions Practice</h1>
+            <p class="paragraph tagline">Practice answering common behavioral interview questions.</p>
+            <h2 class="heading-1">Questions</h2>
             <div id="questions-list">
-              <p>Click the button below to get new questions.</p>
-            </div>
+              </div>
+            <button class="button orange-button large" onclick="fetchQuestions()">Get New Questions</button>
             <br>
-            <button onclick="generateQuestions()">Get New Questions</button>
+            <p class="paragraph note">Tip: Read each question carefully and think about a specific, real-world example to answer it. Use the STAR method to structure your response.</p>
           </div>
         </div>
       </div>
@@ -85,43 +58,31 @@
     </div>
   </div>
   <script>
-    let questions = [];
+    // These questions are used for the initial page load
+    // Clicking on the "Get New Questions" button with use the result
+    // of reading the file
+    const questions = [
+      "Tell me about a time you had to handle a difficult client. What did you do?",
+      "Describe a time you worked as part of a team to achieve a goal. What was your role?",
+      "Can you give me an example of a time you failed at something? What did you learn from it?",
+      "Tell me about a time you had to manage multiple priorities. How did you stay organized?",
+      "Describe a situation where you had to quickly adapt to a change in a project or workplace.",
+      "Tell me about a time you had to deal with an ethical dilemma.",
+      "Describe a situation where you had to persuade someone to see your point of view.",
+      "Tell me about a time you had to make a tough decision. What was the outcome?",
+      "Describe a situation where you had to work with a difficult coworker. How did you handle it?",
+      "Can you describe a time when you went above and beyond for a project or task?"
+    ];
 
-    async function fetchQuestions() {
-      try {
-
-        const response = await fetch('behavioral-questions.txt');
-        const text = await response.text();
-        questions = text.split('\r\n').filter(q => q.trim() !== '');
-        console.log(questions)
-        console.log(questions.length) // Corrected 'quewstions' to 'questions'
-
-      } catch (error) {
-        console.error('Error fetching questions:', error);
+    function getRandomUniqueNumbers(max) {
+      const numbers = new Set();
+      while (numbers.size < 3) {
+        numbers.add(Math.floor(Math.random() * max));
       }
+      return Array.from(numbers);
     }
 
-    function getRandomUniqueNumbers(n) {
-      if (n < 3) {
-        return 'Error: The length of the array must be at least 3 to get 3 unique numbers.';
-      }
-
-      const numbers = [];
-      for (let i = 0; i < n; i++) {
-        numbers.push(i);
-      }
-
-      for (let i = numbers.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
-      }
-
-      result = numbers.slice(0, 3)
-      console.log(result)
-      return result;
-    }
-
-    function generateQuestions() {
+    function fetchQuestions() {
       if (questions.length === 0) {
         document.getElementById('questions-list').innerHTML = '<p>No questions available. Please check the "behavioral-questions.txt" file.</p>';
         return;
