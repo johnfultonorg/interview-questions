@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Practice answering behavioral interview questions.">
+  <title>Behavioral Questions Practice</title>
+  <link rel="stylesheet" href="css/coffeegrinder.css">
+  <link rel="stylesheet" href="css/wireframe-theme.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <div class="row full-width-row header">
+    <header class="coffee-span-12">
+      <a href="#row" class="skip">Skip to main content</a>
+      <div class="container header-container">
+        <div class="row">
+          <div class="coffee-span-12">
+            <div class="row">
+              <div class="coffee-span-12">
+                <nav class="coffee-span-12">
+                  <div class="row">
+                    <div class="coffee-span-12">
+                      <div class="container navigation-container">
+                        <div class="row">
+                          <div class="coffee-span-12">
+                            <nav>
+                              <div class="row">
+                                <ul class="coffee-span-12">
+                                  <li class="coffee-span-12">
+                                    <a class="nav-link" href="index.html">Practice Questions</a>
+                                  </li>
+                                  <li class="coffee-span-12">
+                                    <a class="nav-link" href="star.html">The STAR Method</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </nav>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </div>
+            <div class="row">
+              <div class="coffee-span-12">
+                <h1 class="page-heading">Behavioral Question Practice</h1>
+                <p class="paragraph tagline">Practice makes perfect!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+  <div class="row">
+    <div class="coffee-span-12">
+      <div class="container main-container">
+        <div class="row">
+          <div class="coffee-span-12">
+            <h2 class="heading-1">Random Questions</h2>
+            <div id="questions-list">
+              <p>Click the button below to get new questions.</p>
+            </div>
+            <br>
+            <button onclick="generateQuestions()">Get New Questions</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row full-width-row footer-row">
+    <div class="coffee-span-12">
+      <footer class="container footer-container">
+        <div class="row">
+          <div class="coffee-span-12">
+            <p class="paragraph copywright">&copy; 2025 Interview Prep</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script>
+    let questions = [];
+
+    async function fetchQuestions() {
+      try {
+
+        const response = await fetch('behavioral-questions.txt');
+        const text = await response.text();
+        questions = text.split('\r\n').filter(q => q.trim() !== '');
+        console.log(questions)
+        console.log(questions.length) // Corrected 'quewstions' to 'questions'
+
+      } catch (error) {
+        console.error('Error fetching questions:', error);
+      }
+    }
+
+    function getRandomUniqueNumbers(n) {
+      if (n < 3) {
+        return 'Error: The length of the array must be at least 3 to get 3 unique numbers.';
+      }
+
+      const numbers = [];
+      for (let i = 0; i < n; i++) {
+        numbers.push(i);
+      }
+
+      for (let i = numbers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+      }
+
+      result = numbers.slice(0, 3)
+      console.log(result)
+      return result;
+    }
+
+    function generateQuestions() {
+      if (questions.length === 0) {
+        document.getElementById('questions-list').innerHTML = '<p>No questions available. Please check the "behavioral-questions.txt" file.</p>';
+        return;
+      }
+
+      const questionsList = document.getElementById('questions-list');
+      // This line correctly gets 3 unique random indexes from the questions array
+      const questionIndexes = getRandomUniqueNumbers(questions.length);
+
+      // Clear any existing content in the questions-list container
+      questionsList.innerHTML = '';
+
+      // Create an unordered list to hold the questions
+      const ul = document.createElement('ul');
+
+      // Loop through the array of 3 unique random indexes
+      questionIndexes.forEach(index => {
+        // Select the question at the current index
+        const selectedQuestion = questions[index];
+
+        // Create a new list item for the question
+        const li = document.createElement('li');
+        li.textContent = selectedQuestion;
+
+        // Add the bullet point style
+        li.style.listStyleType = 'disc';
+
+        // Add the "well" class to apply the styling
+        li.classList.add('well');
+
+        // Append the list item to the unordered list
+        ul.appendChild(li);
+      });
+
+      // Append the complete list of questions to the DOM
+      questionsList.appendChild(ul);
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchQuestions);
+  </script>
+</body>
+
+</html>
