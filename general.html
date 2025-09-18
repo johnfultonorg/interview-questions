@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Practice answering behavioral interview questions.">
-  <title>Behavioral Questions Practice </title>
+  <meta name="description" content="Practice answering general interview questions.">
+  <title>General Questions Practice </title>
   <link rel="stylesheet" href="css/coffeegrinder.css">
   <link rel="stylesheet" href="css/wireframe-theme.css">
   <link rel="stylesheet" href="css/main.css">
@@ -34,15 +34,15 @@
       <div class="container main-container">
         <div class="row">
           <div class="coffee-span-12">
-            <h1 class="page-heading">Behavioral Questions Practice</h1>
-            <p class="paragraph tagline">Practice answering common behavioral interview questions.</p>
+            <h1 class="page-heading">General Questions Practice</h1>
+            <p class="paragraph tagline">Practice answering common general interview questions.</p>
             <h2 class="heading-1">Questions</h2>
             <div id="questions-list">
             </div>
             <button class="button orange-button large" onclick="fetchQuestions()">Get New Questions</button>
             <br>
             <p class="paragraph note">Tip: Read each question carefully and think about a specific, real-world example
-              to answer it. Use the STAR method to structure your response.</p>
+              to answer it.</p>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
 
     async function loadQuestions() {
       try {
-        const response = await fetch('behavioral-questions.txt');
+        const response = await fetch('general-questions.txt');
         if (!response.ok) {
           throw new Error("Failed to load questions file.");
         }
@@ -77,7 +77,7 @@
         fetchQuestions(); // show some questions on first load
       } catch (error) {
         document.getElementById('questions-list').innerHTML =
-          '<p>Error loading questions. Please check "behavioral-questions.txt".</p>';
+          '<p>Error loading questions. Please check "general-questions.txt".</p>';
       }
     }
 
@@ -92,7 +92,7 @@
     function fetchQuestions() {
       if (questions.length === 0) {
         document.getElementById('questions-list').innerHTML =
-          '<p>No questions available. Please check the "behavioral-questions.txt" file.</p>';
+          '<p>No questions available. Please check the "general-questions.txt" file.</p>';
         return;
       }
 
