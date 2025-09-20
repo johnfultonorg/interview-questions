@@ -279,8 +279,10 @@ img{
   border-bottom: 2px solid #1f7bb6;
 }
 
-
-
+.nav-tabs a[aria-current="page"] {
+  color: #ffb417;
+  border-bottom: 2px solid #ffb417;
+}
 
 @media screen and (max-width: 880px) {
   /* Text Elements */
