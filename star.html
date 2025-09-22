@@ -70,12 +70,16 @@
       <footer class="container footer-container">
         <div class="row">
           <div class="coffee-span-12">
-            <p class="paragraph copywright">&copy; 2025 Interview Prep</p>
+            <p class="paragraph copywright">&copy; <span id="year"></span> Interview Prep</p>
           </div>
         </div>
       </footer>
     </div>
   </div>
 </body>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 </html>

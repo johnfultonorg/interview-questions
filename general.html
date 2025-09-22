@@ -56,12 +56,13 @@
       </div>
     </div>
   </div>
+
   <div class="row full-width-row footer-row">
     <div class="coffee-span-12">
       <footer class="container footer-container">
         <div class="row">
           <div class="coffee-span-12">
-            <p class="paragraph copywright">&copy; 2025 Interview Prep</p>
+            <p class="paragraph copywright">&copy; <span id="year"></span> Interview Prep</p>
           </div>
         </div>
       </footer>
@@ -136,6 +137,8 @@
         console.error('Failed to copy text: ', err);
       }
     }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
 
     document.addEventListener('DOMContentLoaded', loadQuestions);
   </script>
