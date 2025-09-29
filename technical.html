@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Practice answering behavioral interview questions.">
-  <title>Behavioral Questions Practice </title>
+  <meta name="description" content="Practice answering technical interview questions.">
+  <title>Technical Questions Practice</title>
   <link rel="stylesheet" href="css/coffeegrinder.css">
   <link rel="stylesheet" href="css/wireframe-theme.css">
   <link rel="stylesheet" href="css/main.css">
@@ -22,9 +22,9 @@
           <div class="coffee-span-12">
             <nav>
               <ul class="nav-tabs">
-                <li><a href="index.html" aria-current="page">Behavioral Questions </a></li>
-                <li><a href="general.html">General Questions </a></li>
-                <li><a href="technical.html">Technical Questions</a></li>
+                <li><a href="index.html">Behavioral Questions</a></li>
+                <li><a href="general.html">General Questions</a></li>
+                <li><a href="technical.html" aria-current="page">Technical Questions</a></li>
                 <li><a href="star.html">The STAR Method</a></li>
               </ul>
             </nav>
@@ -33,13 +33,14 @@
       </div>
     </header>
   </div>
+
   <div class="row" id="main-content">
     <div class="coffee-span-12">
       <div class="container main-container">
         <div class="row">
           <div class="coffee-span-12">
-            <h1 class="page-heading">Behavioral Questions Practice</h1>
-            <p class="paragraph tagline">Practice answering common behavioral interview questions.</p>
+            <h1 class="page-heading">Technical Questions Practice</h1>
+            <p class="paragraph tagline">Practice answering common technical interview questions.</p>
             <h2 class="heading-1">Questions</h2>
             <div id="questions-list">
             </div>
@@ -50,14 +51,15 @@
               </button>
             </div>
             <br>
-            <p class="paragraph note">Tip: Read each question carefully and think about a specific, real-world example
-              to answer it. Use the STAR method to structure your response.</p>
+            <p class="paragraph note">
+              Tip: Be clear and methodical. State your assumptions, outline your approach, and—when relevant—discuss
+              trade‑offs, complexity, and how you’d validate the solution.
+            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 
   <div class="row full-width-row footer-row">
     <div class="coffee-span-12">
@@ -77,16 +79,16 @@
 
     async function loadQuestions() {
       try {
-        const response = await fetch('data/behavioral-questions.txt');
+        const response = await fetch('data/technical-questions.txt');
         if (!response.ok) {
-          throw new Error("Failed to load questions file.");
+          throw new Error('Failed to load questions file.');
         }
         const text = await response.text();
         questions = text.split('\n').map(q => q.trim()).filter(q => q.length > 0);
         fetchQuestions();
       } catch (error) {
         document.getElementById('questions-list').innerHTML =
-          '<p>Error loading questions. Please check "behavioral-questions.txt".</p>';
+          '<p>Error loading questions. Please check "technical-questions.txt".</p>';
       }
     }
 
@@ -101,7 +103,7 @@
     function fetchQuestions() {
       if (questions.length === 0) {
         document.getElementById('questions-list').innerHTML =
-          '<p>No questions available. Please check the "behavioral-questions.txt" file.</p>';
+          '<p>No questions available. Please check the "technical-questions.txt" file.</p>';
         return;
       }
 
@@ -141,7 +143,6 @@
     }
 
     document.getElementById('year').textContent = new Date().getFullYear();
-
     document.addEventListener('DOMContentLoaded', loadQuestions);
   </script>
 </body>
