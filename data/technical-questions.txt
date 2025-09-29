@@ -1,15 +1,15 @@
 How much coding have you done?
-WHat coding langauge are you most comfortable in?
+What coding language are you most comfortable in?
 How do you prefer to learn new technologies?
-Describe the most challenging technical problem you've faced. What was your approach to solving it, and what did you learn? 
+Describe the most challenging technical problem you've faced. What was your approach to solving it, and what did you learn?
 How do you stay current with the rapidly changing landscape of technology?
 Tell me about a new technology or tool you recently learned on your own. What prompted you to learn it, and how did you apply it?
 Pick some technical concept in your field. How do you explain the concept to a non-technical stakeholder?
-What are some ethical considerations you must take into account un your field?
+What are some ethical considerations you must take into account in your field?
 What are the most important considerations when presenting intermediate or final results to stakeholders?
 What technology in your field are you most excited to learn more about and work with? Why?
 What are the opportunities and risks of AI in your field?
-What are you best hints for using Generative AI Text Tools?
-What strengths do you believe are most importnat your your dicipline?
-What online communities, tools, or resouerces to you rely on to stay effective?
-You have several technologies on yoru resume. Which is your strongest and what have you dont in theat technolgoy to build your skills?
+What are your best hints for using Generative AI Text Tools?
+What strengths do you believe are most important in your discipline?
+What online communities, tools, or resources do you rely on to stay effective?
+You have several technologies on your resume. Which is your strongest and what have you done in that technology to build your skills?
