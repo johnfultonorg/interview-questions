@@ -71,78 +71,11 @@
     </div>
   </div>
 
+  <script src="js/question-manager.js"></script>
   <script>
-    let questions = [];
-    let displayedQuestions = [];
-
-    async function loadQuestions() {
-      try {
-        const response = await fetch('data/behavioral-questions.txt');
-        if (!response.ok) {
-          throw new Error("Failed to load questions file.");
-        }
-        const text = await response.text();
-        questions = text.split('\n').map(q => q.trim()).filter(q => q.length > 0);
-        fetchQuestions();
-      } catch (error) {
-        document.getElementById('questions-list').innerHTML =
-          '<p>Error loading questions. Please check "behavioral-questions.txt".</p>';
-      }
-    }
-
-    function getRandomUniqueNumbers(max) {
-      const numbers = new Set();
-      while (numbers.size < 3 && numbers.size < max) {
-        numbers.add(Math.floor(Math.random() * max));
-      }
-      return Array.from(numbers);
-    }
-
-    function fetchQuestions() {
-      if (questions.length === 0) {
-        document.getElementById('questions-list').innerHTML =
-          '<p>No questions available. Please check the "behavioral-questions.txt" file.</p>';
-        return;
-      }
-
-      const questionsList = document.getElementById('questions-list');
-      const questionIndexes = getRandomUniqueNumbers(questions.length);
-      displayedQuestions = questionIndexes.map(index => questions[index]);
-
-      questionsList.innerHTML = '';
-      const ul = document.createElement('ul');
-
-      displayedQuestions.forEach(q => {
-        const li = document.createElement('li');
-        li.textContent = q;
-        li.style.listStyleType = 'disc';
-        li.classList.add('well');
-        ul.appendChild(li);
-      });
-
-      questionsList.appendChild(ul);
-    }
-
-    async function copyQuestions() {
-      if (displayedQuestions.length === 0) {
-        return;
-      }
-      const textToCopy = displayedQuestions.join('\n\n');
-      try {
-        await navigator.clipboard.writeText(textToCopy);
-        const copyButton = document.getElementById('copy-button');
-        copyButton.innerHTML = '<i class="fas fa-clipboard-check"></i> Copied!';
-        setTimeout(() => {
-          copyButton.innerHTML = '<i class="fas fa-clipboard"></i> Copy Questions';
-        }, 2000);
-      } catch (err) {
-        console.error('Failed to copy text: ', err);
-      }
-    }
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    document.addEventListener('DOMContentLoaded', loadQuestions);
+    // Initialize the question manager for behavioral questions
+    questionManager = new QuestionManager('data/behavioral-questions.txt');
+    questionManager.init();
   </script>
 </body>
 

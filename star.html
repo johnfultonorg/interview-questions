@@ -79,8 +79,15 @@
   </div>
 </body>
 
+<script src="js/question-manager.js"></script>
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  // Just set the year for this page (no questions functionality needed)
+  document.addEventListener('DOMContentLoaded', () => {
+    const yearElement = document.getElementById('year');
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear();
+    }
+  });
 </script>
 
 </html>
